@@ -1,0 +1,45 @@
+import {Component} from 'react'
+import './index.css'
+import TeamCard from '../TeamCard'
+
+class Home extends Component {
+  state = {teamsList: []}
+
+  componentDidMount() {
+    this.getTeamsList()
+  }
+
+  getTeamsList = async () => {
+    const response = await fetch('https://apis.ccbp.in/ipl')
+    const data = await response.json()
+    const newData = data.teams
+    const updatedData = newData.map(each => ({
+      name: each.name,
+      id: each.id,
+      teamImageUrl: each.team_image_url,
+    }))
+    this.setState({teamsList: updatedData})
+  }
+
+  render() {
+    const {teamsList} = this.state
+    return (
+      <div className="bg-container">
+        <div>
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
+            alt="ipl-logo"
+          />
+          <h1>IPL Dashboard</h1>
+        </div>
+        <ul>
+          {teamsList.map(each => (
+            <TeamCard key={each.id} teamDetails={each} />
+          ))}
+        </ul>
+      </div>
+    )
+  }
+}
+
+export default Home
