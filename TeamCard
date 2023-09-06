@@ -1,0 +1,17 @@
+import {Link} from 'react-router-dom'
+import './index.css'
+
+const TeamCard = props => {
+  const {teamDetails} = props
+  const {id, name, teamImageUrl} = teamDetails
+  return (
+    <Link to={`/team-matches/${id}`}>
+      <ul>
+        <img className="teamLogo" src={teamImageUrl} alt="team logo" />
+        <h1>{name}</h1>
+      </ul>
+    </Link>
+  )
+}
+
+export default TeamCard
