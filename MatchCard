@@ -1,0 +1,15 @@
+const MatchCard = props => {
+  const {recentMatches} = props
+  const {result, competingTeam, competingTeamLogo, matchStatus} = recentMatches
+
+  return (
+    <div>
+      <h1>{competingTeam}</h1>
+      <img src={competingTeamLogo} alt="logo" />
+      <p>{result}</p>
+      <p>{matchStatus}</p>
+    </div>
+  )
+}
+
+export default MatchCard
